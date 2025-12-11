@@ -38,5 +38,7 @@ workflows:
       - name: Build APK
         script: |
           flutter build apk --release
+          flutter build appbundle --release
     artifacts:
       - build/**/outputs/**/*.apk
+      - build/**/outputs/**/*.aab
