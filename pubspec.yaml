@@ -15,7 +15,7 @@ dependencies:
   path_provider: ^2.1.2
   shared_preferences: ^2.2.2
   connectivity_plus: ^6.0.0
-  workmanager: ^0.5.2
+  workmanager: ^0.6.0
   flutter_local_notifications: ^18.0.0
   permission_handler: ^11.3.0
   share_plus: ^10.0.0
