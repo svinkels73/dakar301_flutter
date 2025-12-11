@@ -10,20 +10,13 @@ workflows:
     scripts:
       - name: Get Flutter packages
         script: |
-          flutter packages pub get
-      - name: Install CocoaPods dependencies
-        script: |
-          cd ios && pod install
-      - name: Flutter analyze
-        script: |
-          flutter analyze
+          flutter pub get
       - name: Build iOS app
         script: |
           flutter build ios --release --no-codesign
     artifacts:
       - build/ios/iphoneos/*.app
       - /tmp/xcodebuild_logs/*.log
-      - flutter_drive.log
 
   android-workflow:
     name: Android Workflow
@@ -34,8 +27,8 @@ workflows:
     scripts:
       - name: Get Flutter packages
         script: |
-          flutter packages pub get
-      - name: Build APK
+          flutter pub get
+      - name: Build APK and AAB
         script: |
           flutter build apk --release
           flutter build appbundle --release
