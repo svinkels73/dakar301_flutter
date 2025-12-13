@@ -7,31 +7,25 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.dakar301.app
     scripts:
       - name: Get Flutter packages
         script: |
           flutter pub get
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios && pod install
+      - name: Set up code signing
+        script: |
+          xcode-project use-profiles
       - name: Build iOS app
         script: |
-          flutter build ios --release --no-codesign
+          flutter build ipa --release --export-options-plist=/Users/builder/export_options.plist
     artifacts:
-      - build/ios/iphoneos/*.app
+      - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
-
-  android-workflow:
-    name: Android Workflow
-    max_build_duration: 60
-    environment:
-      flutter: stable
-      java: 17
-    scripts:
-      - name: Get Flutter packages
-        script: |
-          flutter pub get
-      - name: Build APK and AAB
-        script: |
-          flutter build apk --release
-          flutter build appbundle --release
-    artifacts:
-      - build/**/outputs/**/*.apk
-      - build/**/outputs/**/*.aab
+    publishing:
+      app_store_connect:
+        auth: integration
