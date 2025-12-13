@@ -11,6 +11,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:uuid/uuid.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const Dakar301App());
 }
 
