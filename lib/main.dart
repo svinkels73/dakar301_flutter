@@ -50,12 +50,32 @@ class _HomePageState extends State<HomePage> {
   String _statusText = '';
   double _uploadProgress = 0;
   int _currentTab = 0;
+  bool _isInitialized = false;
 
   @override
   void initState() {
     super.initState();
-    _uploadQueue.init();
-    _checkPendingUploads();
+    _initializeApp();
+  }
+
+  Future<void> _initializeApp() async {
+    try {
+      await _uploadQueue.init();
+      await _checkPendingUploads();
+      if (mounted) {
+        setState(() {
+          _isInitialized = true;
+        });
+      }
+    } catch (e) {
+      print('Init error: $e');
+      if (mounted) {
+        setState(() {
+          _isInitialized = true;
+          _statusText = 'Initialization error';
+        });
+      }
+    }
   }
 
   Future<void> _checkPendingUploads() async {
@@ -358,6 +378,24 @@ IMPORTANT: Use http:// (not https)''';
 
   @override
   Widget build(BuildContext context) {
+    if (!_isInitialized) {
+      return Scaffold(
+        backgroundColor: const Color(0xFF1a1a2e),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text('🎬', style: TextStyle(fontSize: 60)),
+              SizedBox(height: 20),
+              Text('DAKAR 301', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+              SizedBox(height: 20),
+              CircularProgressIndicator(color: Color(0xFF4361ee)),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: _currentTab == 0 ? _buildUploadPage() : _buildVideosPage(),
