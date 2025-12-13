@@ -9,7 +9,7 @@ workflows:
       cocoapods: default
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.dakar301.app
+        bundle_identifier: com.dakar301.dakar301
     scripts:
       - name: Get Flutter packages
         script: |
