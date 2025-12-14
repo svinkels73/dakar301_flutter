@@ -45,35 +45,5 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>DAKAR 301 needs camera access to capture videos and photos</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>DAKAR 301 needs access to your photo library to select videos and photos</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>DAKAR 301 needs microphone access to record audio with videos</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>processing</string>
-	</array>
-	<key>BGTaskSchedulerPermittedIdentifiers</key>
-	<array>
-		<string>com.dakar301.dakar301.upload</string>
-	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>srv1028486.hstgr.cloud</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
 </dict>
 </plist>
